@@ -1,7 +1,10 @@
 package com.nitolmotorsltd.imageslider;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -11,10 +14,9 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
-        implements BaseSliderView.OnSliderClickListener,
-        ViewPagerEx.OnPageChangeListener
-{
+        implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
+    Button btn_notification;
     SliderLayout sliderLayout, sliderLayout_local ;
 
     HashMap<String, String> HashMapForURL ;
@@ -25,6 +27,15 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btn_notification = (Button) findViewById(R.id.btn_notification);
+        btn_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         sliderLayout = (SliderLayout)findViewById(R.id.slider);
         sliderLayout_local = (SliderLayout)findViewById(R.id.slider_local);
@@ -147,7 +158,7 @@ public class MainActivity extends AppCompatActivity
         HashMapForLocalRes.put("Donut", R.drawable.img2);
         HashMapForLocalRes.put("Eclair", R.drawable.img3);
         HashMapForLocalRes.put("Froyo", R.drawable.img4);
-        HashMapForLocalRes.put("Duplicate", R.drawable.img4);
+        HashMapForLocalRes.put("Duplicate", R.drawable.img3);
 
     }
 }
